@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>home</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <section *ngIf="(afAuth.user | async) as user;else loginItems">
+    <ion-label>{{user.email}} registered successfully!</ion-label>
+  </section>
+  <section>
+    <ion-button (click)="login()">Login</ion-button>
+    <ion-button (click)="logout()">Logout</ion-button>
+  </section>
+  <section>
+    <app-calender></app-calender>
+  </section>
+</ion-content>
+
+<ng-template #loginItems>
+  <h1>Login is required!</h1>
+    <ion-item>
+      <ion-label position='floating'>Email</ion-label>
+      <ion-input [(ngModel)]='user.email'></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position='floating'>Password</ion-label>
+      <ion-input [(ngModel)]='user.password' type='password'></ion-input>
+    </ion-item>
+</ng-template>

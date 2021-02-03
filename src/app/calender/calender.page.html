@@ -1,0 +1,17 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Calender</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-calendar [(ngModel)]="date"
+                (onChange)="onChange($event)"
+                [type]="type"
+                [format]="'YYYY-MM-DD'">
+  </ion-calendar>
+  <p style="text-align: center;">{{date}}</p>
+</ion-content>
