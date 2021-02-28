@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon name="chevron-back-outline" (click)="back()" slot="start" size="large"></ion-icon>
+    <ion-title>camera</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-input type='file' (change)="upload($event)" accept=".png,.jpg,.jpeg">
+    <!-- <ion-icon name="cloud-upload-outline"></ion-icon> -->
+  </ion-input>
+  <!-- <div *ngIf="downloadURL | async; let downloadSrc" class="alert alert-info" role="alert">
+    File uploaded: <a [href]="downloadSrc">{{downloadSrc}}</a>
+    <img src="./id" alt="image">
+</div> -->
+
+</ion-content>
+

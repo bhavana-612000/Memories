@@ -1,0 +1,44 @@
+<ion-header *ngIf="(afAuth.user | async) as user">
+  <ion-toolbar>
+    <ion-icon name="chevron-back-outline" (click)="back()" slot="start"  size="large"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- <div class="content"> -->
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngIf="(afAuth.user | async) as user ;else loginItems" >
+          <ion-label>{{user.email}} registered successfully!</ion-label><br><br>
+          <ion-button (click)="logout()" size='small' color="danger">Logout</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!-- </div> -->
+
+  <ng-template #loginItems>
+    <div class="content">
+      <ion-item color="transperent">
+        <ion-label  position='floating'>Email</ion-label><br>
+        <ion-input class="input" [(ngModel)]='user.email'>
+          <ion-icon name="person-circle-outline" color='success'></ion-icon>
+        </ion-input>
+      </ion-item>
+  
+      <ion-item color="transperent">
+        <ion-label position='floating'>Password</ion-label><br>
+        <ion-input  class="input"  [(ngModel)]='user.password' type='password' >
+          <ion-icon name="lock-closed-outline" color="success"></ion-icon>
+        </ion-input>
+      </ion-item>
+      <br>
+      <div class="cont-alignment">
+      <ion-button class="cont-alignment" (click)="login()" size='small' color="success"  >Login</ion-button>
+      </div>
+      <p class="cont-alignment">Already have an account?</p>
+      <a class="cont-alignment">Register</a>
+    </div>
+  </ng-template>
+  
+</ion-content>
+
