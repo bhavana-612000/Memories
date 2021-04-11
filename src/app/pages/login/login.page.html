@@ -9,12 +9,11 @@
   <ion-grid>
     <ion-row>
       <ion-col *ngIf="(afAuth.user | async) as user ;else loginItems" >
-          <ion-label>{{user.email}} registered successfully!</ion-label><br><br>
+          <ion-label>{{user.email}} registered successfully!</ion-label><br><br> -->
           <ion-button (click)="logout()" size='small' color="danger">Logout</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
-  <!-- </div> -->
 
   <ng-template #loginItems>
     <div class="content">
@@ -36,8 +35,9 @@
       <ion-button class="cont-alignment" (click)="login()" size='small' color="success"  >Login</ion-button>
       </div>
       <p class="cont-alignment">Already have an account?</p>
-      <a class="cont-alignment">Register</a>
+      <a class="cont-alignment" href="/register">Register</a>
     </div>
+    
   </ng-template>
   
 </ion-content>

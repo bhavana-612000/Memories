@@ -12,6 +12,8 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
 import {environment} from '../environments/environment';
 import {CalendarModule} from 'ion2-calendar';
 import {AngularFireStorageModule} from "@angular/fire/storage";
+import {FCM} from '@ionic-native/fcm/ngx';
+import { ComponentModule } from './COMPONENTS/component';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,8 +26,11 @@ import {AngularFireStorageModule} from "@angular/fire/storage";
     AngularFireModule.initializeApp(environment.firebase),
     CalendarModule,
     AngularFireStorageModule,
+    ComponentModule
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [
+    FCM,
+  { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

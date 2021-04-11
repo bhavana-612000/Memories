@@ -1,10 +1,10 @@
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
-import { Component, OnInit } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import { ModalController, PopoverController } from '@ionic/angular';
+import { ModalController, PopoverController, ToastController } from '@ionic/angular';
+import { from } from 'rxjs';
 import { CalenderPage } from '../../calender/calender.page';
-
 interface User{
   email?:string,
   password?:string
@@ -26,8 +26,10 @@ export class LoginPage implements OnInit {
     public afAuth:AngularFireAuth,
     public router:Router,
     public modelController:ModalController,
-    public popoverController:PopoverController
-  ) { }
+    public popoverController:PopoverController,
+    private toastCtrl :ToastController
+  ) { 
+  }
 
 
   ngOnInit() {
@@ -45,15 +47,21 @@ export class LoginPage implements OnInit {
     await this.afAuth.signInWithEmailAndPassword(
       this.user.email,
       this.user.password
-    );
-  //  this.success=true;
+    ).then( value =>{
+      this.success=true
+      console.log("Success!")
+    })
+    .catch(err =>{
+      this.errMessage=err.code
+      // console.log(err.message)
+    })
     if(this.success==true){
       this.router.navigate(['/home'])
     }
-    else{
-      this.errMessage = console.error(Message);
-      console.log(this.errMessage)
+     else{
+       this.toastMessage()
     }
+    
   }
 
   async logout(){
@@ -65,9 +73,22 @@ await this.afAuth.signOut()
     });
     return await modal.present();
 };
-  back(){
-    this.router.navigate(['/home'])
-  }
-
-
+back(){
+  this.router.navigate(['/home'])
 }
+async toastMessage(){
+  let toast = await this.toastCtrl.create({
+    cssClass:'ionToast',
+    duration:3000,
+    message:this.errMessage,
+    position:'bottom',
+    keyboardClose:true,
+    animated:true
+    // color:"primary"
+  });
+  await toast.present()
+  }
+}
+
+
+

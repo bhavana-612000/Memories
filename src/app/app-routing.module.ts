@@ -4,13 +4,10 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
-  {
-    path: 'folder/:id',
-    loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
-  },
+  
   {
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
@@ -26,7 +23,12 @@ const routes: Routes = [
   {
     path: 'camera',
     loadChildren: () => import('./pages/camera/camera.module').then( m => m.CameraPageModule)
+  },
+  {
+    path: 'second:/price',
+    loadChildren: () => import('./pages/second/second.module').then( m => m.SecondPageModule)
   }
+
 
 
 
