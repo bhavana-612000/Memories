@@ -1,19 +1,20 @@
-<ion-header *ngIf="(afAuth.user | async) as user">
+<ion-header [translucent]="true" *ngIf="(afAuth.user | async) as user">
   <ion-toolbar>
-    <ion-icon name="chevron-back-outline" (click)="back()" slot="start"  size="large"></ion-icon>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Memories</ion-title>
+   <ion-buttons slot="primary">
+    <ion-button color="secondary"  ion-button icon-only (click)="presentPopover($event)"> 
+      <ion-icon class="more-icon" name="more" slot="icon-only" ios="ellipsis-vertical" md="ellipsis-vertical"></ion-icon>
+    </ion-button>
+  </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <!-- <div class="content"> -->
-  <ion-grid>
-    <ion-row>
-      <ion-col *ngIf="(afAuth.user | async) as user ;else loginItems" >
-          <ion-label>{{user.email}} registered successfully!</ion-label><br><br> -->
-          <ion-button (click)="logout()" size='small' color="danger">Logout</ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+<ion-content *ngIf="(afAuth.user | async) as user ;else loginItems">
+    <app-home></app-home>
+</ion-content>
 
   <ng-template #loginItems>
     <div class="content">
@@ -40,5 +41,3 @@
     
   </ng-template>
   
-</ion-content>
-

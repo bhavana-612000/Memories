@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
@@ -13,7 +13,7 @@ import {environment} from '../environments/environment';
 import {CalendarModule} from 'ion2-calendar';
 import {AngularFireStorageModule} from "@angular/fire/storage";
 import {FCM} from '@ionic-native/fcm/ngx';
-import { ComponentModule } from './COMPONENTS/component';
+import { ComponentModule } from './COMPONENTS/component.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,5 +32,6 @@ import { ComponentModule } from './COMPONENTS/component';
     FCM,
   { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
+  schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule {}

@@ -1,10 +1,10 @@
-import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { Component,OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { ModalController, PopoverController, ToastController } from '@ionic/angular';
-import { from } from 'rxjs';
+import { PopoverComponent } from 'src/app/COMPONENTS/popover/popover.component';
 import { CalenderPage } from '../../calender/calender.page';
+
 interface User{
   email?:string,
   password?:string
@@ -27,10 +27,19 @@ export class LoginPage implements OnInit {
     public router:Router,
     public modelController:ModalController,
     public popoverController:PopoverController,
-    private toastCtrl :ToastController
+    private toastCtrl :ToastController,
   ) { 
   }
 
+  async presentPopover(ev: any) {
+    const popover = await this.popoverController.create({
+      component:PopoverComponent,
+      cssClass: 'popover_setting',
+      event: ev,
+      translucent: true
+    });
+    return await popover.present();
+    }
 
   ngOnInit() {
   }
@@ -56,7 +65,8 @@ export class LoginPage implements OnInit {
       // console.log(err.message)
     })
     if(this.success==true){
-      this.router.navigate(['/home'])
+      // this.router.navigate(['/home'])
+      return this.success
     }
      else{
        this.toastMessage()
@@ -73,9 +83,7 @@ await this.afAuth.signOut()
     });
     return await modal.present();
 };
-back(){
-  this.router.navigate(['/home'])
-}
+
 async toastMessage(){
   let toast = await this.toastCtrl.create({
     cssClass:'ionToast',
@@ -84,8 +92,7 @@ async toastMessage(){
     position:'bottom',
     keyboardClose:true,
     animated:true
-    // color:"primary"
-  });
+   });
   await toast.present()
   }
 }

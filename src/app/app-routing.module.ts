@@ -8,10 +8,7 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   
-  {
-    path: 'home',
-    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
-  },
+  
   {
     path: 'calender',
     loadChildren: () => import('./calender/calender.module').then( m => m.CalenderPageModule)
@@ -25,9 +22,11 @@ const routes: Routes = [
     loadChildren: () => import('./pages/camera/camera.module').then( m => m.CameraPageModule)
   },
   {
-    path: 'second:/price',
-    loadChildren: () => import('./pages/second/second.module').then( m => m.SecondPageModule)
-  }
+    path: 'notifications',
+    loadChildren: () => import('./pages/notifications/notifications.module').then( m => m.NotificationsPageModule)
+  },
+
+  
 
 
 
