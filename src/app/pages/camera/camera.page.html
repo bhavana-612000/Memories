@@ -6,13 +6,33 @@
 </ion-header>
 
 <ion-content>
-  <ion-input type='file' (change)="upload($event)" accept=".png,.jpg,.jpeg">
-    <!-- <ion-icon name="cloud-upload-outline"></ion-icon> -->
-  </ion-input>
-  <!-- <div *ngIf="downloadURL | async; let downloadSrc" class="alert alert-info" role="alert">
-    File uploaded: <a [href]="downloadSrc">{{downloadSrc}}</a>
-    <img src="./id" alt="image">
-</div> -->
-
+  <div>
+    <form method="post" enctype="multipart/form-data">
+    <div>
+      <br>
+      <div>
+      <b>UploadPhoto</b>
+      </div>
+      <br>
+    <input type="file" (change)="uploadPhoto($event)" accept=".png,.jpg,.jpeg" multiple="true" />
+    </div>
+    </form>
+    </div>
+    <div *ngIf="barStatus">
+    Uploading.....
+    </div>
+    
+    <app-photos-list [imageUploads]="imageUploads"></app-photos-list>
+      <div class='imagePreview'>
+      <div *ngFor="let image of uploads">
+        <img loading="lazy" [src]="image"/>
+      </div>
+    </div>
+    <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+      <ion-fab-button (click)="takePicture()">
+        <ion-icon name="camera"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+    <img [src]="currentImage" *ngIf="currentImage">
 </ion-content>
 

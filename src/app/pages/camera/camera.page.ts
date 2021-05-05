@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {AngularFireStorage,AngularFireStorageReference} from '@angular/fire/storage';
-import {AngularFireUploadTask} from '@angular/fire/storage';
-import { Observable } from 'rxjs';
-
+import { FirebaseUploadService } from './../../services/firebase-upload.service';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
 
 @Component({
@@ -12,23 +10,51 @@ import { Observable } from 'rxjs';
   styleUrls: ['./camera.page.scss'],
 })
 export class CameraPage implements OnInit {
-  ref: AngularFireStorageReference;
-  task: AngularFireUploadTask;
-  image:any;
-  downloadURL:Observable<String>
+  currentImage: any;
+  barStatus = false;
+  uploads = [];
+  
   constructor(
     public router:Router,
-    public afStorage:AngularFireStorage
+    private firebaseUploadService: FirebaseUploadService,
+    private camera:Camera
   ) { }
+  
   back(){
-    this.router.navigate(['home'])
+    this.router.navigate(['/login'])
   }
-  async upload(event){
-    const id = Math.random().toString(36).substring(2);
-    this.ref = this.afStorage.ref(id);
-    this.task =this.ref.put(event.target.files[0]);
-    this.downloadURL= await this.ref.getDownloadURL().toPromise();
-  }
+  uploadPhoto(event) {
+    this.barStatus = true;
+    this.firebaseUploadService.storeImage(event.target.files[0]).then(
+        (res: any) => {
+            if (res) {
+                console.log(res);
+                this.uploads.unshift(res);
+                this.barStatus = false;
+        }
+    },
+    (error: any) => {
+        this.barStatus = false;
+    }
+    );
+    }
+
+    takePicture() {
+      const options: CameraOptions = {
+        quality: 100,
+        destinationType: this.camera.DestinationType.DATA_URL,
+        encodingType: this.camera.EncodingType.JPEG,
+        mediaType: this.camera.MediaType.PICTURE
+      };
+  
+      this.camera.getPicture(options).then((imageData) => {
+        this.currentImage = 'data:image/jpeg;base64,' + imageData;
+      }, (err) => {
+        // Handle error
+        console.log("Camera issue:" + err);
+      });
+    }
+    
   ngOnInit() {
   }
 

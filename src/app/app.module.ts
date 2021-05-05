@@ -14,6 +14,7 @@ import {CalendarModule} from 'ion2-calendar';
 import {AngularFireStorageModule} from "@angular/fire/storage";
 import {FCM} from '@ionic-native/fcm/ngx';
 import { ComponentModule } from './COMPONENTS/component.module';
+import { Camera } from '@ionic-native/camera/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,10 +27,11 @@ import { ComponentModule } from './COMPONENTS/component.module';
     AngularFireModule.initializeApp(environment.firebase),
     CalendarModule,
     AngularFireStorageModule,
-    ComponentModule
+    ComponentModule,
   ],
   providers: [
     FCM,
+    Camera,
   { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
