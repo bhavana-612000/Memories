@@ -1,38 +1,29 @@
 <ion-header>
   <ion-toolbar>
     <ion-icon name="chevron-back-outline" (click)="back()" slot="start" size="large"></ion-icon>
-    <ion-title>camera</ion-title>
+    <ion-title>Upload Photos</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div>
-    <form method="post" enctype="multipart/form-data">
-    <div>
-      <br>
-      <div>
-      <b>UploadPhoto</b>
-      </div>
-      <br>
-    <input type="file" (change)="uploadPhoto($event)" accept=".png,.jpg,.jpeg" multiple="true" />
-    </div>
-    </form>
-    </div>
-    <div *ngIf="barStatus">
-    Uploading.....
-    </div>
-    
-    <app-photos-list [imageUploads]="imageUploads"></app-photos-list>
-      <div class='imagePreview'>
-      <div *ngFor="let image of uploads">
-        <img loading="lazy" [src]="image"/>
-      </div>
-    </div>
-    <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-      <ion-fab-button (click)="takePicture()">
-        <ion-icon name="camera"></ion-icon>
+ <ion-content>
+   <ion-grid>
+     <ion-col>
+       <img src="{{imageURL}}" >
+     </ion-col>
+   </ion-grid>
+   <ion-fab vertical='bottom' horizontal='center'>
+    <ion-fab-button color="secondary">
+      <ion-icon name="cloud-upload" color='light'></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side='start' >
+      <ion-fab-button (click)='uploadPhoto()' >
+        <ion-icon color='tertiary' name="image"></ion-icon>
       </ion-fab-button>
-    </ion-fab>
-    <img [src]="currentImage" *ngIf="currentImage">
-</ion-content>
-
+    </ion-fab-list> 
+    <ion-fab-list side="end">
+      <ion-fab-button (click)='openCamera()' >
+        <ion-icon color='danger' name="camera"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list> 
+  </ion-fab>
+ </ion-content>
