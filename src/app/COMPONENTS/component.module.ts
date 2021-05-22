@@ -1,16 +1,16 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HomeComponent } from './home/home.component';
 import { PopoverComponent } from './popover/popover.component';
+import { HeaderComponent } from './header/header.component';
 
 
 
 @NgModule({
-  declarations: [HomeComponent,PopoverComponent],
+  declarations: [PopoverComponent,HeaderComponent],
   imports: [
     CommonModule
   ],
-  exports:[HomeComponent,PopoverComponent],
+  exports:[PopoverComponent,HeaderComponent],
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ComponentModule { }

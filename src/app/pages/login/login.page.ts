@@ -2,7 +2,6 @@ import { Component,OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { ModalController, PopoverController, ToastController } from '@ionic/angular';
-import { PopoverComponent } from 'src/app/COMPONENTS/popover/popover.component';
 import { CalenderPage } from '../../calender/calender.page';
 
 interface User{
@@ -31,15 +30,7 @@ export class LoginPage implements OnInit {
   ) { 
   }
 
-  async presentPopover(ev: any) {
-    const popover = await this.popoverController.create({
-      component:PopoverComponent,
-      cssClass: 'popover_setting',
-      event: ev,
-      translucent: true
-    });
-    return await popover.present();
-    }
+  
 
   ngOnInit() {
   }

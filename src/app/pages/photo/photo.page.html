@@ -1,8 +1,5 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-icon name="chevron-back-outline" (click)="back()" slot="start" size="large"></ion-icon>
-    <ion-title>Upload Photos</ion-title>
-  </ion-toolbar>
+  <app-header name="Photos"></app-header>
 </ion-header>
 
  <ion-content>
@@ -11,7 +8,7 @@
        <img src="{{imageURL}}" >
      </ion-col>
    </ion-grid>
-   <ion-fab vertical='bottom' horizontal='center'>
+   <ion-fab vertical='bottom' horizontal='end'>
     <ion-fab-button color="secondary">
       <ion-icon name="cloud-upload" color='light'></ion-icon>
     </ion-fab-button>
@@ -19,11 +16,12 @@
       <ion-fab-button (click)='uploadPhoto()' >
         <ion-icon color='tertiary' name="image"></ion-icon>
       </ion-fab-button>
-    </ion-fab-list> 
-    <ion-fab-list side="end">
+    
       <ion-fab-button (click)='openCamera()' >
         <ion-icon color='danger' name="camera"></ion-icon>
       </ion-fab-button>
     </ion-fab-list> 
   </ion-fab>
  </ion-content>
+
+ 

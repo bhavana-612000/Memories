@@ -4,10 +4,11 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { CameraPageRoutingModule } from './camera-routing.module';
+import { PhotoPageRoutingModule } from './photo-routing.module';
 
-import { CameraPage } from './camera.page';
+import { PhotoPage } from './photo.page';
 import {AngularFireStorageModule} from '@angular/fire/storage';
+import { ComponentModule } from 'src/app/COMPONENTS/component.module';
 
 
 @NgModule({
@@ -15,10 +16,11 @@ import {AngularFireStorageModule} from '@angular/fire/storage';
     CommonModule,
     FormsModule,
     IonicModule,
-    CameraPageRoutingModule,
-    AngularFireStorageModule
+    PhotoPageRoutingModule,
+    AngularFireStorageModule,
+    ComponentModule
   ],
-  declarations: [CameraPage],
+  declarations: [PhotoPage],
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
 export class CameraPageModule {}

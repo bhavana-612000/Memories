@@ -9,11 +9,10 @@ import { LoginPageRoutingModule } from './login-routing.module';
 import { LoginPage } from './login.page';
 import { PopoverComponent } from 'src/app/COMPONENTS/popover/popover.component';
 import { ComponentModule } from 'src/app/COMPONENTS/component.module';
-import { HomeComponent } from 'src/app/COMPONENTS/home/home.component';
 
 
 @NgModule({
-  entryComponents:[PopoverComponent,HomeComponent],
+  entryComponents:[PopoverComponent],
   imports: [
     CommonModule,
     FormsModule,

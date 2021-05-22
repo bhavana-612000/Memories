@@ -1,20 +1,34 @@
 <ion-header [translucent]="true" *ngIf="(afAuth.user | async) as user">
-  <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons>
-      <ion-title>Memories</ion-title>
-   <ion-buttons slot="primary">
-    <ion-button color="secondary"  ion-button icon-only (click)="presentPopover($event)"> 
-      <ion-icon class="more-icon" name="more" slot="icon-only" ios="ellipsis-vertical" md="ellipsis-vertical"></ion-icon>
-    </ion-button>
-  </ion-buttons>
-  </ion-toolbar>
+  <app-header name="Memories"></app-header>
 </ion-header>
 
-<ion-content *ngIf="(afAuth.user | async) as user ;else loginItems">
-    <app-home></app-home>
-</ion-content>
+<div *ngIf="(afAuth.user | async) as user ;else loginItems">
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+  
+      <ion-tab-button tab='video'>
+        <ion-label >Video</ion-label>
+        <ion-icon color='tertiary' name="videocam"></ion-icon>
+      </ion-tab-button>
+  
+      <ion-tab-button tab='audio'>
+        <ion-icon color='danger' name="mic"></ion-icon>
+        <ion-label>Audio</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab='text'>
+        <ion-icon color='warning' name="text" ></ion-icon>
+        <ion-label >Text</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab='photo'>
+        <ion-icon color='secondary' name="image"></ion-icon>
+        <ion-label >Camera</ion-label>
+      </ion-tab-button>
+  
+    </ion-tab-bar>
+  </ion-tabs>
+</div>
 
   <ng-template #loginItems>
     <div class="content">

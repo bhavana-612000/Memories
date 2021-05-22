@@ -1,0 +1,25 @@
+<ion-header>
+  <app-header name="Audio"></app-header>
+</ion-header>
+
+<ion-content>
+  <!-- <ion-list>
+    <ion-item *ngFor="let audio of audioList; index as i;">
+      <p>{{audio.filename}}</p>
+      <h1>hi</h1>
+      <button ion-button clear item-end large (click)="playAudio(audio.filename, i)"><ion-icon name="play"></ion-icon></button>
+    </ion-item>
+  </ion-list> -->
+  <ion-text>
+    <h1>{{status}}</h1>
+  </ion-text>
+    <ion-fab vertical='bottom' horizontal='end' color="light">
+    <ion-fab-button (click)="stopRecord()" *ngIf="recording" >
+      <ion-icon color='tertiary' name="mic-off"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-button (click)="startRecord()" *ngIf="!recording" >
+      <ion-icon color='danger' name="mic"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
+

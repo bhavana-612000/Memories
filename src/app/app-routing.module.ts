@@ -5,7 +5,7 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: 'login',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   
   
@@ -17,14 +17,14 @@ const routes: Routes = [
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   },
-  {
-    path: 'camera',
-    loadChildren: () => import('./pages/camera/camera.module').then( m => m.CameraPageModule)
-  },
-  {
-    path: 'notifications',
-    loadChildren: () => import('./pages/notifications/notifications.module').then( m => m.NotificationsPageModule)
-  },
+  
+
+  
+
+  
+
+
+  
 
   
 

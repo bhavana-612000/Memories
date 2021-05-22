@@ -1,0 +1,12 @@
+<ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-icon *ngIf="(name!='Memories')" (click)='back()' name="chevron-back-outline" slot="start" size="large"></ion-icon>
+    <ion-title>{{name}}</ion-title>
+ <ion-buttons slot="primary">
+  <ion-button color="secondary"  ion-button icon-only (click)="presentPopover($event)"> 
+    <ion-icon class="more-icon" name="more" slot="icon-only" ios="ellipsis-vertical" md="ellipsis-vertical"></ion-icon>
+  </ion-button>
+</ion-buttons>
+</ion-toolbar>
