@@ -7,7 +7,7 @@ import {CaptureVideoOptions,MediaCapture} from '@ionic-native/media-capture/ngx'
   styleUrls: ['./video.page.scss'],
 })
 export class VideoPage implements OnInit {
-  CaptureVideoLoc:'videos/'
+  captureVideoLoc='videos/'
   videoURL:any
   result:any
   constructor(
@@ -24,9 +24,9 @@ export class VideoPage implements OnInit {
       limit:1,
       duration:60
     }
-    const result = await this.mediaCapture.captureVideo(options);
-    const currentVideo = 'data:video/mp4;base64'+result
-    const video = this.storage.ref(this.CaptureVideoLoc+"captured"+this.videoName)
+    const result= await this.mediaCapture.captureVideo(options);
+    const currentVideo = 'data:video/3gpp;base64'+result || 'data:video/quicktime;'+result
+    const video = this.storage.ref(this.captureVideoLoc+"captured"+this.videoName())
     video
     .putString(currentVideo,'data_url')
     .then(() =>{
@@ -34,6 +34,8 @@ export class VideoPage implements OnInit {
         this.videoURL = url
       })
     })
+    console.log("uploaded successfully!")
+    console.log(this.videoURL)
   }
 
   

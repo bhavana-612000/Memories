@@ -30,6 +30,7 @@ import {MediaCapture} from '@ionic-native/media-capture/ngx'
     CalendarModule,
     AngularFireStorageModule,
     ComponentModule,
+    
   ],
   providers: [
     FCM,

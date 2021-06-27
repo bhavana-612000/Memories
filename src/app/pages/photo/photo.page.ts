@@ -44,6 +44,7 @@ export class PhotoPage implements OnInit{
       .then(() =>{
         pictures.getDownloadURL().subscribe((url:any) =>{
           this.imageURL = url
+          console.log(this.imageURL)
         })
       })
       

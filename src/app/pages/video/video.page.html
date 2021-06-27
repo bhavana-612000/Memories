@@ -3,8 +3,8 @@
 </ion-header>
 
 <ion-content>
-  <video>
-    <source src={{videoURL}} type='video/mp4'>
+  <video controls>
+    <source src={{videoURL}} type='video/mp4 || video/3gpp || video/quicktime;'>
     </video>
-  <ion-button (click)="captureVideo">UploadVideo</ion-button>
+  <ion-button (click)="captureVideo()">UploadVideo</ion-button>
 </ion-content>

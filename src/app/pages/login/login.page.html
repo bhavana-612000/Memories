@@ -2,33 +2,35 @@
   <app-header name="Memories"></app-header>
 </ion-header>
 
-<div *ngIf="(afAuth.user | async) as user ;else loginItems">
-  <ion-tabs>
-    <ion-tab-bar slot="bottom">
-  
-      <ion-tab-button tab='video'>
-        <ion-label >Video</ion-label>
-        <ion-icon color='tertiary' name="videocam"></ion-icon>
-      </ion-tab-button>
-  
-      <ion-tab-button tab='audio'>
-        <ion-icon color='danger' name="mic"></ion-icon>
-        <ion-label>Audio</ion-label>
-      </ion-tab-button>
-  
-      <ion-tab-button tab='text'>
-        <ion-icon color='warning' name="text" ></ion-icon>
-        <ion-label >Text</ion-label>
-      </ion-tab-button>
-  
-      <ion-tab-button tab='photo'>
-        <ion-icon color='secondary' name="image"></ion-icon>
-        <ion-label >Camera</ion-label>
-      </ion-tab-button>
-  
-    </ion-tab-bar>
-  </ion-tabs>
-</div>
+<ion-content>
+  <div *ngIf="(afAuth.user | async) as user ;else loginItems">
+    <ion-tabs>
+      <ion-tab-bar slot="bottom">
+    
+        <ion-tab-button tab='video'>
+          <ion-label >Video</ion-label>
+          <ion-icon color='tertiary' name="videocam"></ion-icon>
+        </ion-tab-button>
+    
+        <ion-tab-button tab='audio'>
+          <ion-icon color='danger' name="mic"></ion-icon>
+          <ion-label>Audio</ion-label>
+        </ion-tab-button>
+    
+        <ion-tab-button tab='text'>
+          <ion-icon color='warning' name="text" ></ion-icon>
+          <ion-label >Text</ion-label>
+        </ion-tab-button>
+    
+        <ion-tab-button tab='photo'>
+          <ion-icon color='secondary' name="image"></ion-icon>
+          <ion-label >Camera</ion-label>
+        </ion-tab-button>
+    
+      </ion-tab-bar>
+    </ion-tabs>
+  </div>
+</ion-content>  
 
   <ng-template #loginItems>
     <div class="content">
@@ -44,14 +46,19 @@
         <ion-input  class="input"  [(ngModel)]='user.password' type='password' >
           <ion-icon name="lock-closed-outline" color="success"></ion-icon>
         </ion-input>
-      </ion-item>
-      <br>
+      </ion-item><br>
       <div class="cont-alignment">
-      <ion-button class="cont-alignment" (click)="login()" size='small' color="success"  >Login</ion-button>
+        <ion-button *ngIf="!Register"  class="login-btn center" (click)="login()" size='small' color="success"  >Login</ion-button>
       </div>
-      <p class="cont-alignment">Already have an account?</p>
-      <a class="cont-alignment" href="/register">Register</a>
+      <div class="cont-alignment">
+        <ion-button *ngIf="Register" class="register-btn center" (click)="RegisterUser()" size="small">Register</ion-button>
+      </div>
+      <p  class="cont-alignment" *ngIf="!Register">Already have an account?
+        <a class="register-btn center" (click)="RegisterUser()" size="small">Register</a>
+      </p>
+      <div class="cont-alignment">
+        <a *ngIf='Register' href='/login'>Go back to login</a>
+      </div>
     </div>
-    
   </ng-template>
   

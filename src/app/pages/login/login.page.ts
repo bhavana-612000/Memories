@@ -1,5 +1,6 @@
 import { Component,OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { EmailValidator } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ModalController, PopoverController, ToastController } from '@ionic/angular';
 import { CalenderPage } from '../../calender/calender.page';
@@ -16,6 +17,7 @@ interface User{
 export class LoginPage implements OnInit {
   success:boolean=false;
   errMessage:any;
+  Register:boolean=false
   user: User={
     email:'',
     password:''
@@ -34,29 +36,50 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
   }
-
+  RegisterUser(){
+    if(this.Register){
+      console.log(this.Register)
+      this.createAccount()
+    }
+    else{
+      console.log(this.Register)
+      this.register()
+    }
+  }
+  register(){
+    this.Register=true
+  }
   async createAccount(){
     await this.afAuth.createUserWithEmailAndPassword(
       this.user.email,
       this.user.password
-    );
-    console.log(this.user)
+    ).then(() =>{
+      this.Register=!this.Register
+      console.log("Registration Successfull!")
+    })
+    .catch((err) =>{
+      this.errMessage=err.code
+    })
+    if(this.Register==true){
+      this.toastMessage()
+    }
+    else{
+      return this.Register
+    }
   }
 
   async login(){
     await this.afAuth.signInWithEmailAndPassword(
       this.user.email,
       this.user.password
-    ).then( value =>{
+    ).then( () =>{
       this.success=true
       console.log("Success!")
     })
     .catch(err =>{
       this.errMessage=err.code
-      // console.log(err.message)
     })
     if(this.success==true){
-      // this.router.navigate(['/home'])
       return this.success
     }
      else{
