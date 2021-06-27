@@ -40,7 +40,6 @@
           <ion-icon name="person-circle-outline" color='success'></ion-icon>
         </ion-input>
       </ion-item>
-  
       <ion-item color="transperent">
         <ion-label position='floating'>Password</ion-label><br>
         <ion-input  class="input"  [(ngModel)]='user.password' type='password' >
@@ -57,7 +56,7 @@
         <a class="register-btn center" (click)="RegisterUser()" size="small">Register</a>
       </p>
       <div class="cont-alignment">
-        <a *ngIf='Register' href='/login'>Go back to login</a>
+        <a *ngIf='Register' href="/login">Go back to login</a>
       </div>
     </div>
   </ng-template>
